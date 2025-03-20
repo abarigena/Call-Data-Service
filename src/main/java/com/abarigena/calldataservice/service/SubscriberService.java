@@ -26,6 +26,11 @@ public class SubscriberService {
         this.subscriberRepository = subscriberRepository;
     }
 
+    /**
+     * Инициализация списка абонентов после создания экземпляра сервиса.
+     * Проверяет наличие абонентов в базе данных и, если их нет,
+     * создает 10 тестовых абонентов с номерами формата "7999XXXXXXX".
+     */
     @PostConstruct
     public void initializeSubscribers() {
         logger.info("Проверка наличия абонентов в базе данных");

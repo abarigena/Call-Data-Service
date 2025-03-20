@@ -95,6 +95,13 @@ public class CdrGeneratorService {
         logger.info("Завершена генерация CDR-записей за год. Всего сгенерировано {} записей", totalRecordsGenerated);
     }
 
+    /**
+     * Генерирует случайную CDR-запись для указанного абонента и даты.
+     *
+     * @param subscriber абонент, для которого генерируется запись
+     * @param date дата, в которую должен быть совершен звонок
+     * @return созданная CDR-запись с заполненными полями
+     */
     private CdrRecord generateRandomCdrRecord(Subscriber subscriber, LocalDateTime date) {
         CdrRecord cdrRecord = new CdrRecord();
 
