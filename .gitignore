@@ -34,3 +34,4 @@ build/
 /reports/
 /logs/
 /data/
+/dependency-reduced-pom.xml
