@@ -1,11 +1,14 @@
 package com.abarigena.calldataservice.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.time.LocalDateTime;
 
 /**
  * DTO для запроса на генерацию CDR-отчета.
  * Содержит номер абонента и период, за который требуется сформировать отчет.
  */
+@Schema(description = "Запрос на генерацию CDR-отчета")
 public class CdrReportsRequest {
     private String msisdn;
     private LocalDateTime startDate;

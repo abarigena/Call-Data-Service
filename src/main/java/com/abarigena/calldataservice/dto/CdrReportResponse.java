@@ -1,11 +1,14 @@
 package com.abarigena.calldataservice.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.util.UUID;
 
 /**
  * DTO для ответа на запрос генерации CDR-отчета.
  * Содержит UUID запроса и статус выполнения.
  */
+@Schema(description = "Ответ на запрос генерации CDR-отчета")
 public class CdrReportResponse {
     private UUID requestId;
     private String status;

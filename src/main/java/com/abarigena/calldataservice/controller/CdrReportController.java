@@ -4,6 +4,8 @@ import com.abarigena.calldataservice.dto.CdrReportResponse;
 import com.abarigena.calldataservice.dto.CdrReportsRequest;
 import com.abarigena.calldataservice.dto.SimpleCdrReportRequest;
 import com.abarigena.calldataservice.service.CdrReportService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ import java.time.LocalDateTime;
  */
 @RestController
 @RequestMapping("/api/cdr/reports")
+@Tag(name = "CDR Reports", description = "API для работы с отчетами по CDR-записям")
 public class CdrReportController {
 
     private static final Logger logger = LoggerFactory.getLogger(CdrReportController.class);
@@ -39,6 +42,10 @@ public class CdrReportController {
      * @return Ответ с UUID запроса и статусом выполнения
      */
     @PostMapping("/generate")
+    @Operation(
+            summary = "Генерация CDR-отчета по периоду",
+            description = "Генерирует отчет для указанного абонента за заданный период времени"
+    )
     public ResponseEntity<CdrReportResponse> generateReport(@RequestBody CdrReportsRequest request) {
         logger.info("Получен запрос на генерацию CDR-отчета для абонента {}", request.getMsisdn());
 
@@ -59,6 +66,10 @@ public class CdrReportController {
      * @param request Упрощенный запрос на генерацию отчета
      * @return Ответ с UUID запроса и статусом выполнения
      */
+    @Operation(
+            summary = "Упрощенная генерация CDR-отчета",
+            description = "Генерирует отчет для указанного абонента за заданное количество дней от текущей даты"
+    )
     @PostMapping("/generate-simple")
     public ResponseEntity<CdrReportResponse> generateSimpleReport(@RequestBody SimpleCdrReportRequest request) {
         logger.info("Получен упрощенный запрос на генерацию CDR-отчета для абонента {} за {} дней",

@@ -2,6 +2,7 @@ package com.abarigena.calldataservice.controller;
 
 import com.abarigena.calldataservice.dto.UdrReport;
 import com.abarigena.calldataservice.service.UdrService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,10 @@ public class UdrController {
      * @param month  месяц (опционально)
      * @return UDR-отчет для абонента
      */
+    @Operation(
+            summary = "Получение UDR-отчета для абонента",
+            description = "Возвращает отчет с информацией о входящих и исходящих звонках абонента за указанный период"
+    )
     @GetMapping("/subscriber/{msisdn}")
     public ResponseEntity<UdrReport> getUdrForSubscriber(
             @PathVariable String msisdn,
@@ -55,6 +60,10 @@ public class UdrController {
      * @param month месяц
      * @return список UDR-отчетов для всех абонентов
      */
+    @Operation(
+            summary = "Получение UDR-отчетов для всех абонентов",
+            description = "Возвращает список UDR-отчетов для всех абонентов за указанный месяц"
+    )
     @GetMapping("/subscribers")
     public ResponseEntity<List<UdrReport>> getAllUdrsByMonth(
             @RequestParam int year,

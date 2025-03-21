@@ -1,6 +1,8 @@
 package com.abarigena.calldataservice.controller;
 
 import com.abarigena.calldataservice.service.CdrGeneratorService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/cdr")
+@Tag(name = "CDR Generator", description = "API для генерации CDR-записей")
 public class CdrGeneratorController {
     private static final Logger logger = LoggerFactory.getLogger(CdrGeneratorController.class);
 
@@ -25,6 +28,10 @@ public class CdrGeneratorController {
         this.cdrGeneratorService = cdrGeneratorService;
     }
 
+    @Operation(
+            summary = "Генерация CDR-записей за год",
+            description = "Инициирует процесс генерации CDR-записей за весь год. Возвращает время выполнения операции."
+    )
     @PostMapping("/generate")
     public ResponseEntity<?> generateCdr() {
         logger.info("Получен запрос на генерацию CDR-записей");
